@@ -1,18 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
+import { AboutComponent } from './about/about.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import {AboutServiceService} from "./about-service.service";
+
+import {RouterModule, Routes} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+const appRoutes: Routes = [
+   { path:'about', component:AboutComponent},
+   { path:'contacts',component:ContactsComponent},
+  {path:'',redirectTo:'/about',pathMatch:'full'}
+]
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+      FormsModule,
+    RouterModule.forRoot(appRoutes),HttpClientModule
   ],
-  providers: [],
+  providers: [AboutServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
